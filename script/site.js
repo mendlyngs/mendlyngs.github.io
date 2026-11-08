@@ -1,9 +1,9 @@
 /* ============================================================
-   Mendingur — shared site script
+   Mendlyngs — shared site script
    Used by: index.html (Trang Chủ), tacgia/ (Trang Tác Giả),
    thesowerscycle/, donate/
 
-   Each page sets window.MENDINGUR_PAGE = { titleVi, titleEn, descVi, descEn }
+   Each page sets window.MENDLYNGS_PAGE = { titleVi, titleEn, descVi, descEn }
    in an inline <script> BEFORE loading this file, so the language
    switcher can update <title> / meta description correctly per page.
 
@@ -13,7 +13,7 @@
    ============================================================ */
 
 (function () {
-  var page = window.MENDINGUR_PAGE || {};
+  var page = window.MENDLYNGS_PAGE || {};
 
   // ===== LANGUAGE SWITCHER =====
   (function () {
@@ -57,7 +57,7 @@
         page.onLanguageChange(lang);
       }
       if (save) {
-        try { localStorage.setItem('mendingur-language', lang); } catch (e) {}
+        try { localStorage.setItem('mendlyngs-language', lang); } catch (e) {}
       }
     }
 
@@ -79,7 +79,7 @@
     });
 
     var saved = null;
-    try { saved = localStorage.getItem('mendingur-language'); } catch (e) {}
+    try { saved = localStorage.getItem('mendlyngs-language'); } catch (e) {}
     // Always apply on load, even with no saved preference, and do it
     // immediately (no fade/delay). This guarantees [data-i18n] elements
     // get their innerHTML applied (escaped markup in data-vi/data-en
@@ -109,7 +109,7 @@
       switcher.classList.toggle('dark', theme === 'dark');
 
       if (save) {
-        try { localStorage.setItem('mendingur-theme', theme); } catch (e) {}
+        try { localStorage.setItem('mendlyngs-theme', theme); } catch (e) {}
       }
     };
 
@@ -174,7 +174,7 @@
   // thêm entry (canonical URL, bfcache miss...) khiến chuỗi lùi bị lặp
   // qua lại giữa 2 trang thay vì lùi tiếp về trang trước đó nữa. Ngăn
   // xếp này do chính mình ghi và đọc nên luôn đúng.
-  var STACK_KEY = 'mendingur-nav-stack';
+  var STACK_KEY = 'mendlyngs-nav-stack';
   var here = window.location.href;
   var stack = [];
   try { stack = JSON.parse(sessionStorage.getItem(STACK_KEY) || '[]'); } catch (e) { stack = []; }
@@ -189,7 +189,7 @@
   try {
     if (referrer) {
       ref = new URL(referrer);
-      isInternal = ref.hostname === 'mendingur.github.io';
+      isInternal = ref.hostname === 'mendlyngs.github.io';
     }
   } catch (e) {}
 
