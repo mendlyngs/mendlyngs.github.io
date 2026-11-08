@@ -3,7 +3,7 @@
  * nav: N6 (masthead, tùy biến) · footer: Ft6 (letter close) · studied: no
  *
  * Mendlyngs — shared site stylesheet
- * Used by: index.html (Cánh Cổng), thesowerscycle/, và mọi trang import tokens.css
+ * Used by: index.html (Trang Chủ), theworldofninecontinents/, và mọi trang import tokens.css
  *
  * Contains ONLY rules verified byte-identical across all pages that
  * use them. Page-specific sizing (.stage padding, .rift-wrap size,
