@@ -173,7 +173,7 @@ a { color: inherit; }
 
 /* ---- top-left back navigation, icon-only variant ----
    Nút tròn chỉ chứa icon mũi tên, nổi y như .menu-toggle nhưng đặt đối
-   xứng ở góc trên-trái. Dùng cho các trang hub (thesowerscycle/, donate/)
+   xứng ở góc trên-trái. Dùng cho các trang hub (thesowerscycle/)
    vốn không có đủ chỗ/nhu cầu cho pill có chữ như .back-link. Vẫn gắn
    vào id="backLink" nên toàn bộ cơ chế chống-lặp + tự ẩn khi vào bằng
    link trực tiếp trong site.js áp dụng y hệt, không cần sửa JS. */
@@ -469,18 +469,6 @@ footer svg {
 
 footer .sep {
   color: var(--parchment-edge);
-}
-
-.donate-link {
-  color: var(--ember-rust) !important;
-  font-weight: 600;
-}
-.donate-link svg {
-  color: var(--ember-rust);
-  transition: transform .2s ease;
-}
-.donate-link:hover svg {
-  transform: scale(1.15);
 }
 
 .copyright {

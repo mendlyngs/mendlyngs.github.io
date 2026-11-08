@@ -1,7 +1,7 @@
 /* ============================================================
    Mendlyngs — shared site script
    Used by: index.html (Trang Chủ), tacgia/ (Trang Tác Giả),
-   thesowerscycle/, donate/
+   thesowerscycle/
 
    Each page sets window.MENDLYNGS_PAGE = { titleVi, titleEn, descVi, descEn }
    in an inline <script> BEFORE loading this file, so the language
