@@ -1,9 +1,9 @@
 /* ============================================================
-   Mendlyngs — shared site script
+   ruii9326 — shared site script
    Used by: index.html (Trang Chủ - cũng là trang tác giả),
    theworldofninecontinents/, donate/
 
-   Each page sets window.MENDLYNGS_PAGE = { titleVi, titleEn, descVi, descEn }
+   Each page sets window.RUII9326_PAGE = { titleVi, titleEn, descVi, descEn }
    in an inline <script> BEFORE loading this file, so the language
    switcher can update <title> / meta description correctly per page.
 
@@ -13,7 +13,7 @@
    ============================================================ */
 
 (function () {
-  var page = window.MENDLYNGS_PAGE || {};
+  var page = window.RUII9326_PAGE || {};
 
   // ===== LANGUAGE SWITCHER =====
   (function () {
@@ -57,7 +57,7 @@
         page.onLanguageChange(lang);
       }
       if (save) {
-        try { localStorage.setItem('mendlyngs-language', lang); } catch (e) {}
+        try { localStorage.setItem('ruii9326-language', lang); } catch (e) {}
       }
     }
 
@@ -79,7 +79,7 @@
     });
 
     var saved = null;
-    try { saved = localStorage.getItem('mendlyngs-language'); } catch (e) {}
+    try { saved = localStorage.getItem('ruii9326-language'); } catch (e) {}
     // Always apply on load, even with no saved preference, and do it
     // immediately (no fade/delay). This guarantees [data-i18n] elements
     // get their innerHTML applied (escaped markup in data-vi/data-en
@@ -109,7 +109,7 @@
       switcher.classList.toggle('dark', theme === 'dark');
 
       if (save) {
-        try { localStorage.setItem('mendlyngs-theme', theme); } catch (e) {}
+        try { localStorage.setItem('ruii9326-theme', theme); } catch (e) {}
       }
     };
 
@@ -174,7 +174,7 @@
   // thêm entry (canonical URL, bfcache miss...) khiến chuỗi lùi bị lặp
   // qua lại giữa 2 trang thay vì lùi tiếp về trang trước đó nữa. Ngăn
   // xếp này do chính mình ghi và đọc nên luôn đúng.
-  var STACK_KEY = 'mendlyngs-nav-stack';
+  var STACK_KEY = 'ruii9326-nav-stack';
   var here = window.location.href;
   var stack = [];
   try { stack = JSON.parse(sessionStorage.getItem(STACK_KEY) || '[]'); } catch (e) { stack = []; }
@@ -189,7 +189,7 @@
   try {
     if (referrer) {
       ref = new URL(referrer);
-      isInternal = ref.hostname === 'mendlyngs.github.io';
+      isInternal = ref.hostname === 'ruii9326.github.io';
     }
   } catch (e) {}
 
