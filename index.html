@@ -468,25 +468,85 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
   transition: border-color var(--dur-short) var(--ease-out);
 }
 .letter-ps a:hover, .letter-ps a:focus-visible { border-color: var(--color-accent); }
-.foot-letter__row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-md);
-  align-items: center;
-  font-size: var(--text-sm);
+/* ---- Những nơi có thể gặp mình ---- */
+.haunts { display: grid; gap: var(--space-lg); justify-items: center; }
+.haunts__head { display: grid; gap: var(--space-xs); justify-items: center; }
+.haunts__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-xl);
+  line-height: 1.15;
+  margin: 0;
+  text-wrap: balance;
 }
-.foot-letter__row a {
-  text-decoration: none;
+.haunts__blurb {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-base);
   color: var(--color-ink-soft);
-  display: flex;
-  align-items: center;
-  gap: var(--space-2xs);
-  transition: color var(--dur-short) var(--ease-out);
+  max-width: 46ch;
+  margin: 0;
+  text-wrap: pretty;
 }
-.foot-letter__row a:hover, .foot-letter__row a:focus-visible { color: var(--color-accent); }
-.foot-letter__row svg { width: 16px; height: 16px; }
-.foot-letter__row .sep { color: var(--color-paper-edge); }
+.haunts__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 760px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+.haunt {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  height: 100%;
+  padding: var(--space-lg) var(--space-md);
+  background: linear-gradient(180deg, var(--card-sheen-top), var(--card-sheen-bottom));
+  border: 1px solid var(--color-paper-edge);
+  border-radius: var(--radius-card);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: border-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+}
+.haunt:hover, .haunt:focus-visible { border-color: var(--color-accent-gold-border); transform: translateY(-3px); }
+.haunt:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.haunt__icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--icon-circle-bg);
+  box-shadow: 0 0 0 1px var(--icon-circle-ring);
+  flex: none;
+}
+.haunt__icon svg { width: 24px; height: 24px; color: var(--color-icon-on-accent); }
+.haunt__text { display: grid; gap: var(--space-3xs); justify-items: center; min-width: 0; }
+.haunt__name { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); line-height: 1.1; }
+.haunt__handle { font-size: var(--text-sm); font-weight: 600; color: var(--color-accent); overflow-wrap: anywhere; }
+.haunt__go {
+  position: absolute;
+  top: var(--space-sm); right: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-ink-soft);
+  opacity: 0.45;
+  transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+}
+.haunt:hover .haunt__go, .haunt:focus-visible .haunt__go { opacity: 1; color: var(--color-accent); transform: translate(2px, -2px); }
+@media (max-width: 40rem) {
+  .haunts__grid { grid-template-columns: 1fr; max-width: 420px; }
+  .haunt { flex-direction: row; text-align: left; gap: var(--space-md); padding: var(--space-md); }
+  .haunt__text { justify-items: start; }
+  .haunt__go { position: static; margin-left: auto; opacity: 0.7; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .haunt, .haunt__go { transition: none; }
+  .haunt:hover, .haunt:focus-visible, .haunt:hover .haunt__go { transform: none; }
+}
 .foot-letter__copyright {
   text-align: center;
   font-size: var(--text-xs);
@@ -723,19 +783,35 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
 
     <p class="letter-ps" data-i18n data-vi="P.S. Nếu bạn tò mò về vũ trụ mà mình đang ngày đêm kiến tạo, &lt;a href=&quot;https://ruii9326.github.io/theworldofninecontinents/&quot;&gt;The World of Nine Continents&lt;/a&gt; đang đợi bạn khám phá tại đây →" data-en="P.S. If you&#x27;re curious about the universe I am building day by day, &lt;a href=&quot;https://ruii9326.github.io/theworldofninecontinents/&quot;&gt;The World of Nine Continents&lt;/a&gt; is waiting for you to explore right here →">P.S. Nếu bạn tò mò về vũ trụ mà mình đang ngày đêm kiến tạo, <a href="https://ruii9326.github.io/theworldofninecontinents/">The World of Nine Continents</a> đang đợi bạn khám phá tại đây →</p>
 
-    <div class="foot-letter__row">
-      <a href="https://youtube.com/@ruii9326" aria-label="YouTube">
-        <svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"><path d="M5 6.5H19A4 4 0 0 1 23 10.5V13.5A4 4 0 0 1 19 17.5H5A4 4 0 0 1 1 13.5V10.5A4 4 0 0 1 5 6.5ZM10 9.7L10 14.3L16 12Z"/></svg>
-      </a>
-      <span class="sep">·</span>
-      <a href="https://x.com/ruii9326" aria-label="X">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.8l-5.3-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.8 6.3L18.9 2Zm-1.2 18h1.9L7.4 4H5.4l12.3 16Z"/></svg>
-      </a>
-      <span class="sep">·</span>
-      <a href="https://facebook.com/ruii9326" aria-label="Facebook">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
-      </a>
-    </div>
+    <section class="haunts" aria-labelledby="hauntsTitle">
+      <div class="haunts__head">
+        <h2 class="haunts__title" id="hauntsTitle" data-i18n data-vi="Những nơi bạn có thể gặp mình" data-en="Where you can find me">Những nơi bạn có thể gặp mình</h2>
+        <p class="haunts__blurb" data-i18n data-vi="Mình không đi đâu xa, chỉ quanh quẩn ở vài góc này thôi. Ghé qua chào mình một tiếng nhé." data-en="I don&#x27;t wander far, just these few corners. Drop by and say hi.">Mình không đi đâu xa, chỉ quanh quẩn ở vài góc này thôi. Ghé qua chào mình một tiếng nhé.</p>
+      </div>
+      <ul class="haunts__grid">
+        <li>
+          <a class="haunt" href="https://youtube.com/@ruii9326">
+            <span class="haunt__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"><path d="M5 6.5H19A4 4 0 0 1 23 10.5V13.5A4 4 0 0 1 19 17.5H5A4 4 0 0 1 1 13.5V10.5A4 4 0 0 1 5 6.5ZM10 9.7L10 14.3L16 12Z"/></svg></span>
+            <span class="haunt__text"><span class="haunt__name">YouTube</span><span class="haunt__handle">@ruii9326</span></span>
+            <span class="haunt__go" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a class="haunt" href="https://x.com/ruii9326">
+            <span class="haunt__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.8l-5.3-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.8 6.3L18.9 2Zm-1.2 18h1.9L7.4 4H5.4l12.3 16Z"/></svg></span>
+            <span class="haunt__text"><span class="haunt__name">X</span><span class="haunt__handle">@ruii9326</span></span>
+            <span class="haunt__go" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a class="haunt" href="https://facebook.com/ruii9326">
+            <span class="haunt__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></span>
+            <span class="haunt__text"><span class="haunt__name">Facebook</span><span class="haunt__handle">/ruii9326</span></span>
+            <span class="haunt__go" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </section>
 
     <div class="foot-letter__copyright" data-i18n data-vi="© 2026 Nguyễn Duy Anh (bút danh: ruii9326)." data-en="© 2026 Nguyen Duy Anh (pen name: ruii9326).">
       © 2026 Nguyễn Duy Anh (bút danh: ruii9326).
