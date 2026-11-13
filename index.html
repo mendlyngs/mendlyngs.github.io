@@ -374,7 +374,7 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
 /* ================= NHẬT KÝ & LIÊN HỆ ================= */
 .panel-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-lg);
   align-items: stretch;
 }
@@ -409,9 +409,27 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
 .log-dot { width: 8px; height: 8px; margin-top: 0.55rem; border-radius: 50%; background: var(--color-accent-gold); flex: none; }
 .log-text { font-size: var(--text-base); line-height: 1.6; color: var(--color-ink-soft); }
 
-.contact-row { display: flex; align-items: center; gap: var(--space-sm); margin-top: auto; }
+/* ---- Liên hệ: hòm thư + những nơi có thể gặp mình, gộp trong một thẻ ---- */
+.now-card--contact {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--space-xl);
+  align-items: center;
+  padding: var(--space-xl);
+}
+.contact-letter { display: flex; flex-direction: column; gap: var(--space-md); min-width: 0; }
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px dashed var(--color-accent-border);
+  border-radius: var(--radius-card);
+  background: linear-gradient(180deg, var(--card-sheen-top), var(--card-sheen-bottom));
+}
 .contact-icon {
-  width: 34px; height: 34px;
+  width: 44px; height: 44px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -419,7 +437,15 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
   box-shadow: 0 0 0 1px var(--icon-circle-ring);
   flex: none;
 }
-.contact-icon svg { width: 15px; height: 15px; }
+.contact-icon svg { width: 20px; height: 20px; }
+.contact-mail__text { display: grid; gap: var(--space-3xs); min-width: 0; }
+.contact-mail__label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
 .contact-email {
   font-weight: 700;
   font-size: var(--text-md);
@@ -428,10 +454,88 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
   border-bottom: 1px solid var(--color-accent-border);
   overflow-wrap: anywhere;
   min-width: 0;
+  justify-self: start;
   transition: border-color var(--dur-short) var(--ease-out);
 }
 .contact-email:hover, .contact-email:focus-visible { border-color: var(--color-accent); }
 .contact-email:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; border-radius: 2px; }
+
+.contact-find { position: relative; display: grid; gap: var(--space-xs); padding-left: var(--space-xl); min-width: 0; }
+.contact-find::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--color-accent-gold-border) 18%, var(--color-accent-gold-border) 82%, transparent);
+  pointer-events: none;
+}
+.contact-find__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-lg);
+  line-height: 1.2;
+  margin: 0;
+  text-wrap: balance;
+}
+.contact-find__blurb {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-base);
+  line-height: 1.5;
+  color: var(--color-ink-soft);
+  margin: 0;
+  text-wrap: pretty;
+}
+.contact-find__list { list-style: none; margin: var(--space-xs) 0 0; padding: 0; display: grid; gap: var(--space-sm); }
+.haunt {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: linear-gradient(180deg, var(--card-sheen-top), var(--card-sheen-bottom));
+  border: 1px solid var(--color-paper-edge);
+  border-radius: var(--radius-card);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: border-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+}
+.haunt:hover, .haunt:focus-visible { border-color: var(--color-accent-gold-border); transform: translateX(4px); }
+.haunt:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+.haunt__icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--icon-circle-bg);
+  box-shadow: 0 0 0 1px var(--icon-circle-ring);
+  flex: none;
+}
+.haunt__icon svg { width: 20px; height: 20px; color: var(--color-icon-on-accent); }
+.haunt__text { display: grid; gap: var(--space-3xs); min-width: 0; }
+.haunt__name { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); line-height: 1.1; }
+.haunt__handle { font-size: var(--text-sm); font-weight: 600; color: var(--color-accent); overflow-wrap: anywhere; }
+.haunt__go {
+  margin-left: auto;
+  font-size: var(--text-md);
+  color: var(--color-ink-soft);
+  opacity: 0.5;
+  transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+}
+.haunt:hover .haunt__go, .haunt:focus-visible .haunt__go { opacity: 1; color: var(--color-accent); transform: translate(2px, -2px); }
+@media (max-width: 60rem) {
+  .now-card--contact { grid-template-columns: minmax(0, 1fr); gap: var(--space-lg); padding: var(--space-lg); align-items: stretch; }
+  .contact-find { padding-left: 0; padding-top: var(--space-lg); }
+  .contact-find::before {
+    left: 0; right: 0; top: 0; bottom: auto;
+    width: auto; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent-gold-border) 18%, var(--color-accent-gold-border) 82%, transparent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .haunt, .haunt__go { transition: none; }
+  .haunt:hover, .haunt:focus-visible, .haunt:hover .haunt__go { transform: none; }
+}
 
 /* ================= LỜI CHÀO CUỐI THƯ ================= */
 .foot-letter {
@@ -468,85 +572,6 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
   transition: border-color var(--dur-short) var(--ease-out);
 }
 .letter-ps a:hover, .letter-ps a:focus-visible { border-color: var(--color-accent); }
-/* ---- Những nơi có thể gặp mình ---- */
-.haunts { display: grid; gap: var(--space-lg); justify-items: center; }
-.haunts__head { display: grid; gap: var(--space-xs); justify-items: center; }
-.haunts__title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: var(--text-xl);
-  line-height: 1.15;
-  margin: 0;
-  text-wrap: balance;
-}
-.haunts__blurb {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: var(--text-base);
-  color: var(--color-ink-soft);
-  max-width: 46ch;
-  margin: 0;
-  text-wrap: pretty;
-}
-.haunts__grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  max-width: 760px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-md);
-}
-.haunt {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  height: 100%;
-  padding: var(--space-lg) var(--space-md);
-  background: linear-gradient(180deg, var(--card-sheen-top), var(--card-sheen-bottom));
-  border: 1px solid var(--color-paper-edge);
-  border-radius: var(--radius-card);
-  color: var(--color-ink);
-  text-decoration: none;
-  transition: border-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
-}
-.haunt:hover, .haunt:focus-visible { border-color: var(--color-accent-gold-border); transform: translateY(-3px); }
-.haunt:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
-.haunt__icon {
-  width: 52px; height: 52px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--icon-circle-bg);
-  box-shadow: 0 0 0 1px var(--icon-circle-ring);
-  flex: none;
-}
-.haunt__icon svg { width: 24px; height: 24px; color: var(--color-icon-on-accent); }
-.haunt__text { display: grid; gap: var(--space-3xs); justify-items: center; min-width: 0; }
-.haunt__name { font-family: var(--font-display); font-weight: 600; font-size: var(--text-lg); line-height: 1.1; }
-.haunt__handle { font-size: var(--text-sm); font-weight: 600; color: var(--color-accent); overflow-wrap: anywhere; }
-.haunt__go {
-  position: absolute;
-  top: var(--space-sm); right: var(--space-md);
-  font-size: var(--text-sm);
-  color: var(--color-ink-soft);
-  opacity: 0.45;
-  transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
-}
-.haunt:hover .haunt__go, .haunt:focus-visible .haunt__go { opacity: 1; color: var(--color-accent); transform: translate(2px, -2px); }
-@media (max-width: 40rem) {
-  .haunts__grid { grid-template-columns: 1fr; max-width: 420px; }
-  .haunt { flex-direction: row; text-align: left; gap: var(--space-md); padding: var(--space-md); }
-  .haunt__text { justify-items: start; }
-  .haunt__go { position: static; margin-left: auto; opacity: 0.7; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .haunt, .haunt__go { transition: none; }
-  .haunt:hover, .haunt:focus-visible, .haunt:hover .haunt__go { transform: none; }
-}
 .foot-letter__copyright {
   text-align: center;
   font-size: var(--text-xs);
@@ -588,8 +613,8 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
   .section { padding: var(--space-xl) var(--page-gutter); }
   .section-head { margin-bottom: var(--space-lg); }
   .mast-nav { gap: var(--space-xs) var(--space-md); }
-  .contact-row { flex-wrap: nowrap; }
-  .contact-email { font-size: var(--text-sm); overflow-wrap: break-word; }
+  .contact-row { flex-wrap: nowrap; gap: var(--space-sm); padding: var(--space-sm); }
+  .contact-email { font-size: var(--text-sm); overflow-wrap: anywhere; }
 }
 </style>
 </head>
@@ -739,8 +764,10 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
       </div>
       <div class="about__text">
         <p class="about__dateline" data-i18n data-vi="Viết từ Thành phố Hồ Chí Minh." data-en="Written from Ho Chi Minh City.">Viết từ Thành phố Hồ Chí Minh.</p>
-        <p class="about__para" data-i18n data-vi="Mình tên thật là Nguyễn Duy Anh, còn ruii9326 là bút danh gắn liền với những thế giới mình tạo ra. Mình yêu cảm giác tự tay nhào nặn một ý tưởng từ lúc nó còn là nét phác thảo mơ hồ cho đến khi thành hình trọn vẹn - dù đó là một chương tiểu thuyết hay từng dòng mã nguồn. Cũng từ niềm tò mò muốn tự chủ mọi thứ mình làm ra, mình tìm hiểu sâu hơn về công nghệ thông tin để tự dựng nên ngôi nhà số cho những câu chuyện của riêng mình." data-en="My given name is Nguyen Duy Anh, though ruii9326 is the name bound to the worlds I create. I love the craft of shaping an idea from its first faint spark into a finished work - whether that means a novel chapter or every line of code. Driven by a desire to understand the machinery behind my own creations, I have also been delving deeper into computer science to build a digital home from scratch for my stories.">Mình tên thật là Nguyễn Duy Anh, còn ruii9326 là bút danh gắn liền với những thế giới mình tạo ra. Mình yêu cảm giác tự tay nhào nặn một ý tưởng từ lúc nó còn là nét phác thảo mơ hồ cho đến khi thành hình trọn vẹn - dù đó là một chương tiểu thuyết hay từng dòng mã nguồn. Cũng từ niềm tò mò muốn tự chủ mọi thứ mình làm ra, mình tìm hiểu sâu hơn về công nghệ thông tin để tự dựng nên ngôi nhà số cho những câu chuyện của riêng mình.</p>
-        <p class="about__para" data-i18n data-vi="Tâm huyết lớn nhất của mình hiện tại đều gửi gắm vào &lt;a href=&quot;https://ruii9326.github.io/theworldofninecontinents/&quot;&gt;The World of Nine Continents&lt;/a&gt; - một bộ tiểu thuyết giả tưởng dài kỳ đặt trên một hành tinh rộng 2.550 triệu km², hoàn toàn tách biệt với thế giới thực. Ở nơi đó, chín đại lục nổi lên giữa biển khơi, bảy chủng tộc cùng tồn tại dưới một bầu trời, và dòng chảy năng lượng vận hành theo những định luật tự nhiên khắc nghiệt. Toàn bộ nền móng địa lý, lịch sử, đức tin cùng hệ thống ma pháp đã được đặt định vững chắc, và dàn nhân vật đang dần hoàn thiện để chuẩn bị cho những chương truyện đầu tiên. Xa hơn những trang văn, mình còn ấp ủ ước vọng chuyển thể vũ trụ này thành một tựa game thế giới mở giàu tính thẩm mỹ, lấy cảm hứng từ phong cách của Genshin Impact và Wuthering Waves." data-en="My greatest dedication right now belongs to &lt;a href=&quot;https://ruii9326.github.io/theworldofninecontinents/&quot;&gt;The World of Nine Continents&lt;/a&gt; - a long-form fantasy novel set on a planet spanning 2,550 million km², entirely separate from our own world. There, nine continents rise from vast oceans, seven races share a single sky, and energy flows according to uncompromising natural laws. The foundations of its geography, history, faiths, and magic system are firmly in place, and its ensemble cast is now taking shape ahead of the first chapters. Beyond the written page, I also harbor the ambition of adapting this universe into an expressive open-world game, inspired by the aesthetics of Genshin Impact and Wuthering Waves.">Tâm huyết lớn nhất của mình hiện tại đều gửi gắm vào <a href="https://ruii9326.github.io/theworldofninecontinents/">The World of Nine Continents</a> - một bộ tiểu thuyết giả tưởng dài kỳ đặt trên một hành tinh rộng 2.550 triệu km², hoàn toàn tách biệt với thế giới thực. Ở nơi đó, chín đại lục nổi lên giữa biển khơi, bảy chủng tộc cùng tồn tại dưới một bầu trời, và dòng chảy năng lượng vận hành theo những định luật tự nhiên khắc nghiệt. Toàn bộ nền móng địa lý, lịch sử, đức tin cùng hệ thống ma pháp đã được đặt định vững chắc, và dàn nhân vật đang dần hoàn thiện để chuẩn bị cho những chương truyện đầu tiên. Xa hơn những trang văn, mình còn ấp ủ ước vọng chuyển thể vũ trụ này thành một tựa game thế giới mở giàu tính thẩm mỹ, lấy cảm hứng từ phong cách của Genshin Impact và Wuthering Waves.</p>
+        <p class="about__para" data-i18n data-vi="Mình tên thật là Nguyễn Duy Anh, còn ruii9326 là bút danh gắn liền với những thế giới mình tạo ra. Mình yêu cảm giác tự tay nhào nặn một ý tưởng từ lúc nó còn là vài nét phác thảo mơ hồ cho đến khi thành hình trọn vẹn, nơi mỗi chi tiết nhỏ đều có lý do để tồn tại. Với mình, một thế giới dù là hư cấu vẫn cần sự chặt chẽ và rạch ròi: mọi thứ sinh ra đều phải có căn nguyên, có vay có trả, và suy cho cùng luôn phải giữ được thế cân bằng." data-en="My given name is Nguyen Duy Anh, though ruii9326 is the name bound to the worlds I create. I love the craft of shaping an idea by hand, from the moment it is only a faint sketch until it takes full form, where every small detail has a reason to exist. To me, even an imagined world demands rigor and clarity: everything that comes into being must have its origin, what is borrowed must be repaid, and in the end the balance must hold.">Mình tên thật là Nguyễn Duy Anh, còn ruii9326 là bút danh gắn liền với những thế giới mình tạo ra. Mình yêu cảm giác tự tay nhào nặn một ý tưởng từ lúc nó còn là vài nét phác thảo mơ hồ cho đến khi thành hình trọn vẹn, nơi mỗi chi tiết nhỏ đều có lý do để tồn tại. Với mình, một thế giới dù là hư cấu vẫn cần sự chặt chẽ và rạch ròi: mọi thứ sinh ra đều phải có căn nguyên, có vay có trả, và suy cho cùng luôn phải giữ được thế cân bằng.</p>
+        <p class="about__para" data-i18n data-vi="Tâm huyết lớn nhất của mình hiện tại đều gửi gắm vào &lt;a href=&quot;https://ruii9326.github.io/theworldofninecontinents/&quot;&gt;The World of Nine Continents&lt;/a&gt;, một bộ tiểu thuyết giả tưởng dài kỳ đặt trên hành tinh rộng 2.550 triệu km², tách biệt hoàn toàn với thế giới thực. Ở nơi đó, chín đại lục nổi lên giữa biển khơi, bảy chủng tộc cùng chung sống dưới một bầu trời, và ma lực vốn không nằm sẵn trong con người mà chảy giữa cây cỏ, đất đá, sông nước cùng gió trời. Mỗi vùng đất lại có một nhịp bồi hoàn riêng: nơi trù phú thì dư dả, còn nơi cằn cỗi, con người buộc phải trả giá đắt cho từng lần vận dụng ma pháp." data-en="My greatest dedication right now belongs to &lt;a href=&quot;https://ruii9326.github.io/theworldofninecontinents/&quot;&gt;The World of Nine Continents&lt;/a&gt;, a long-form fantasy novel set on a planet spanning 2,550 million km², entirely separate from our own world. There, nine continents rise from vast oceans, seven races share a single sky, and mana does not rest within people but flows through plants, earth, rivers, and wind. Each land has its own rhythm of replenishment: where it is bountiful there is plenty, and where it is barren, people must pay dearly for every act of magic.">Tâm huyết lớn nhất của mình hiện tại đều gửi gắm vào <a href="https://ruii9326.github.io/theworldofninecontinents/">The World of Nine Continents</a>, một bộ tiểu thuyết giả tưởng dài kỳ đặt trên hành tinh rộng 2.550 triệu km², tách biệt hoàn toàn với thế giới thực. Ở nơi đó, chín đại lục nổi lên giữa biển khơi, bảy chủng tộc cùng chung sống dưới một bầu trời, và ma lực vốn không nằm sẵn trong con người mà chảy giữa cây cỏ, đất đá, sông nước cùng gió trời. Mỗi vùng đất lại có một nhịp bồi hoàn riêng: nơi trù phú thì dư dả, còn nơi cằn cỗi, con người buộc phải trả giá đắt cho từng lần vận dụng ma pháp.</p>
+        <p class="about__para" data-i18n data-vi="Mạch truyện được đan cài từ nhiều ngả rẽ khác nhau. Đó là hành trình của một cậu bé bình thường lớn lên nơi thành phố tự do, từng mắc sai lầm, từng vấp ngã rồi được những người thương yêu nâng dậy. Đó còn là cuộc tranh giành ma lực giữa các vương quốc trước những miền đất đang dần cạn kiệt, hay đức tin gửi vào một Đấng Sáng Thế mà chẳng ai dám chắc còn dõi theo thế gian. Mỗi đại lục tự kể câu chuyện của riêng mình, để rồi tất cả dần hội tụ về chung một điểm." data-en="The story is woven from many threads. There is the journey of an ordinary boy who grows up in a free city, who makes mistakes and stumbles, then is lifted back up by those who love him. There is the struggle over mana among kingdoms, set against lands slowly drained dry, and a faith placed in a Creator whom no one can be sure still watches over the world. Each continent tells its own story, until they all gradually converge on a single point.">Mạch truyện được đan cài từ nhiều ngả rẽ khác nhau. Đó là hành trình của một cậu bé bình thường lớn lên nơi thành phố tự do, từng mắc sai lầm, từng vấp ngã rồi được những người thương yêu nâng dậy. Đó còn là cuộc tranh giành ma lực giữa các vương quốc trước những miền đất đang dần cạn kiệt, hay đức tin gửi vào một Đấng Sáng Thế mà chẳng ai dám chắc còn dõi theo thế gian. Mỗi đại lục tự kể câu chuyện của riêng mình, để rồi tất cả dần hội tụ về chung một điểm.</p>
+        <p class="about__para" data-i18n data-vi="Hiện tại, toàn bộ nền móng về địa lý, lịch sử, đức tin cùng hệ thống ma pháp đã được đặt định vững chắc, và dàn nhân vật cũng đang dần hoàn thiện để chuẩn bị cho những chương truyện đầu tiên. Xa hơn những trang văn, mình còn ấp ủ ước vọng chuyển thể vũ trụ này thành một tựa game thế giới mở giàu tính thẩm mỹ, lấy cảm hứng từ phong cách của Genshin Impact và Wuthering Waves." data-en="For now, the foundations of its geography, history, faiths, and magic system have been firmly laid, and its ensemble cast is taking shape ahead of the first chapters. Beyond the written page, I also harbor the ambition of adapting this universe into an expressive open-world game, inspired by the aesthetics of Genshin Impact and Wuthering Waves.">Hiện tại, toàn bộ nền móng về địa lý, lịch sử, đức tin cùng hệ thống ma pháp đã được đặt định vững chắc, và dàn nhân vật cũng đang dần hoàn thiện để chuẩn bị cho những chương truyện đầu tiên. Xa hơn những trang văn, mình còn ấp ủ ước vọng chuyển thể vũ trụ này thành một tựa game thế giới mở giàu tính thẩm mỹ, lấy cảm hứng từ phong cách của Genshin Impact và Wuthering Waves.</p>
       </div>
     </div>
   </section>
@@ -762,14 +789,47 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
         </ul>
       </div>
 
-      <div class="now-card" id="lienhe">
-        <h2 class="now-card__title" data-i18n data-vi="Liên hệ" data-en="Get in touch">Liên hệ</h2>
-        <p class="now-card__blurb" data-i18n data-vi="Nếu bạn muốn gửi đôi dòng tâm sự - một cảm nhận về thế giới trong truyện, một góp ý nhỏ, hay đơn giản chỉ là một lời chào - hòm thư của mình luôn rộng mở, và mình luôn tự tay đọc từng bức thư gửi đến." data-en="If you would like to leave a message - a thought on the world and its stories, a note, or simply a warm hello - my inbox is always open, and I personally read every letter that arrives.">Nếu bạn muốn gửi đôi dòng tâm sự - một cảm nhận về thế giới trong truyện, một góp ý nhỏ, hay đơn giản chỉ là một lời chào - hòm thư của mình luôn rộng mở, và mình luôn tự tay đọc từng bức thư gửi đến.</p>
-        <div class="contact-row">
-          <span class="contact-icon" aria-hidden="true">
-            <svg class="icon-on-accent" viewBox="0 0 24 24" fill="none" stroke="var(--color-icon-on-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-          </span>
-          <a class="contact-email" href="mailto:methesky.mending@gmail.com">methesky.mending@gmail.com</a>
+      <div class="now-card now-card--contact" id="lienhe">
+        <div class="contact-letter">
+          <h2 class="now-card__title" data-i18n data-vi="Liên hệ" data-en="Get in touch">Liên hệ</h2>
+          <p class="now-card__blurb" data-i18n data-vi="Nếu bạn muốn gửi đôi dòng tâm sự - một cảm nhận về thế giới trong truyện, một góp ý nhỏ, hay đơn giản chỉ là một lời chào - hòm thư của mình luôn rộng mở, và mình luôn tự tay đọc từng bức thư gửi đến." data-en="If you would like to leave a message - a thought on the world and its stories, a note, or simply a warm hello - my inbox is always open, and I personally read every letter that arrives.">Nếu bạn muốn gửi đôi dòng tâm sự - một cảm nhận về thế giới trong truyện, một góp ý nhỏ, hay đơn giản chỉ là một lời chào - hòm thư của mình luôn rộng mở, và mình luôn tự tay đọc từng bức thư gửi đến.</p>
+          <div class="contact-row">
+            <span class="contact-icon" aria-hidden="true">
+              <svg class="icon-on-accent" viewBox="0 0 24 24" fill="none" stroke="var(--color-icon-on-accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </span>
+            <span class="contact-mail__text">
+              <span class="contact-mail__label" data-i18n data-vi="Hòm thư" data-en="Mailbox">Hòm thư</span>
+              <a class="contact-email" href="mailto:methesky.mending@gmail.com">methesky.mending@gmail.com</a>
+            </span>
+          </div>
+        </div>
+
+        <div class="contact-find" role="group" aria-labelledby="hauntsTitle">
+          <h3 class="contact-find__title" id="hauntsTitle" data-i18n data-vi="Những nơi bạn có thể gặp mình" data-en="Where you can find me">Những nơi bạn có thể gặp mình</h3>
+          <p class="contact-find__blurb" data-i18n data-vi="Mình không đi đâu xa, chỉ quanh quẩn ở vài góc này thôi. Ghé qua chào mình một tiếng nhé." data-en="I don&#x27;t wander far, just these few corners. Drop by and say hi.">Mình không đi đâu xa, chỉ quanh quẩn ở vài góc này thôi. Ghé qua chào mình một tiếng nhé.</p>
+          <ul class="contact-find__list">
+            <li>
+              <a class="haunt" href="https://youtube.com/@ruii9326">
+                <span class="haunt__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"><path d="M5 6.5H19A4 4 0 0 1 23 10.5V13.5A4 4 0 0 1 19 17.5H5A4 4 0 0 1 1 13.5V10.5A4 4 0 0 1 5 6.5ZM10 9.7L10 14.3L16 12Z"/></svg></span>
+                <span class="haunt__text"><span class="haunt__name">YouTube</span><span class="haunt__handle">@ruii9326</span></span>
+                <span class="haunt__go" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li>
+              <a class="haunt" href="https://x.com/ruii9326">
+                <span class="haunt__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.8l-5.3-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.8 6.3L18.9 2Zm-1.2 18h1.9L7.4 4H5.4l12.3 16Z"/></svg></span>
+                <span class="haunt__text"><span class="haunt__name">X</span><span class="haunt__handle">@ruii9326</span></span>
+                <span class="haunt__go" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li>
+              <a class="haunt" href="https://facebook.com/ruii9326">
+                <span class="haunt__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></span>
+                <span class="haunt__text"><span class="haunt__name">Facebook</span><span class="haunt__handle">@ruii9326</span></span>
+                <span class="haunt__go" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -782,36 +842,6 @@ a.split-row__link:focus-visible { outline: 2px solid var(--color-accent); outlin
     </p>
 
     <p class="letter-ps" data-i18n data-vi="P.S. Nếu bạn tò mò về vũ trụ mà mình đang ngày đêm kiến tạo, &lt;a href=&quot;https://ruii9326.github.io/theworldofninecontinents/&quot;&gt;The World of Nine Continents&lt;/a&gt; đang đợi bạn khám phá tại đây →" data-en="P.S. If you&#x27;re curious about the universe I am building day by day, &lt;a href=&quot;https://ruii9326.github.io/theworldofninecontinents/&quot;&gt;The World of Nine Continents&lt;/a&gt; is waiting for you to explore right here →">P.S. Nếu bạn tò mò về vũ trụ mà mình đang ngày đêm kiến tạo, <a href="https://ruii9326.github.io/theworldofninecontinents/">The World of Nine Continents</a> đang đợi bạn khám phá tại đây →</p>
-
-    <section class="haunts" aria-labelledby="hauntsTitle">
-      <div class="haunts__head">
-        <h2 class="haunts__title" id="hauntsTitle" data-i18n data-vi="Những nơi bạn có thể gặp mình" data-en="Where you can find me">Những nơi bạn có thể gặp mình</h2>
-        <p class="haunts__blurb" data-i18n data-vi="Mình không đi đâu xa, chỉ quanh quẩn ở vài góc này thôi. Ghé qua chào mình một tiếng nhé." data-en="I don&#x27;t wander far, just these few corners. Drop by and say hi.">Mình không đi đâu xa, chỉ quanh quẩn ở vài góc này thôi. Ghé qua chào mình một tiếng nhé.</p>
-      </div>
-      <ul class="haunts__grid">
-        <li>
-          <a class="haunt" href="https://youtube.com/@ruii9326">
-            <span class="haunt__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"><path d="M5 6.5H19A4 4 0 0 1 23 10.5V13.5A4 4 0 0 1 19 17.5H5A4 4 0 0 1 1 13.5V10.5A4 4 0 0 1 5 6.5ZM10 9.7L10 14.3L16 12Z"/></svg></span>
-            <span class="haunt__text"><span class="haunt__name">YouTube</span><span class="haunt__handle">@ruii9326</span></span>
-            <span class="haunt__go" aria-hidden="true">↗</span>
-          </a>
-        </li>
-        <li>
-          <a class="haunt" href="https://x.com/ruii9326">
-            <span class="haunt__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23 22h-6.8l-5.3-6.9L4.8 22H1.7l8.1-9.3L1 2h7l4.8 6.3L18.9 2Zm-1.2 18h1.9L7.4 4H5.4l12.3 16Z"/></svg></span>
-            <span class="haunt__text"><span class="haunt__name">X</span><span class="haunt__handle">@ruii9326</span></span>
-            <span class="haunt__go" aria-hidden="true">↗</span>
-          </a>
-        </li>
-        <li>
-          <a class="haunt" href="https://facebook.com/ruii9326">
-            <span class="haunt__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg></span>
-            <span class="haunt__text"><span class="haunt__name">Facebook</span><span class="haunt__handle">@ruii9326</span></span>
-            <span class="haunt__go" aria-hidden="true">↗</span>
-          </a>
-        </li>
-      </ul>
-    </section>
 
     <div class="foot-letter__copyright" data-i18n data-vi="© 2026 Nguyễn Duy Anh (bút danh: ruii9326)." data-en="© 2026 Nguyen Duy Anh (pen name: ruii9326).">
       © 2026 Nguyễn Duy Anh (bút danh: ruii9326).
